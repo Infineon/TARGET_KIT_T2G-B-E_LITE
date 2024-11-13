@@ -58,6 +58,15 @@ _base_SRAM_CM0P                     = sram_base_address + sram_start_reserve + s
 _size_SRAM_CM0P                     = cm0plus_sram_reserve - sram_start_reserve - sram_private_for_srom;
 
 
+/* CM0+ flash reservation must end on a sector boundary in order to avoid partial erasure of CM4 application. */
+code_flash_sector_size              = 0x8000;
+
+/* Enforce CM0+ flash size ends on a boundary.  Comment this assert out if you need to prioritize CM4
+ * application space, but note that if the sector boundary does not match the CM0+ flash size, the CM4
+ * application must always be flashed again after the CM0+ application, since flashing the CM0+ program
+ * will erase the start of the CM4 program that is placed inside the last CM0+ application sector. */
+ASSERT(cm0plus_code_flash_reserve % code_flash_sector_size == 0, "CM0 code space does not end on a sector boundary, which will cause the start of the CM4 application space to be erased when modifying CM0 application.  Fix CM0 application size.")
+
 /* Force symbol to be entered in the output file as an undefined symbol. Doing
 * this may, for example, trigger linking of additional modules from standard
 * libraries. You may list several symbols for each EXTERN, and you may use
@@ -334,14 +343,6 @@ SECTIONS
     /* Check if data + heap + stack exceeds RAM limit */
     ASSERT(__StackLimit >= __HeapLimit, "region RAM overflowed with stack")
 
-
-    /* Emulated EEPROM Flash area */
-    /*
-    .cy_em_eeprom :
-    {
-        KEEP(*(.cy_em_eeprom))
-    } > em_eeprom
-    */
 
     /* Supervisory Flash: User data */
     .cy_sflash_user_data :

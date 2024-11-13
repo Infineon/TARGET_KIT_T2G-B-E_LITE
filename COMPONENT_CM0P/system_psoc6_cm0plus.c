@@ -33,11 +33,7 @@
 #if (defined(CY_DEVICE_TVIIBE))
 #include "cmsis_compiler.h"
 
-#if defined(CY_DEVICE_TVIIBE4M)
-#include "tviibe4m_partition.h"
-#elif defined(CY_DEVICE_TVIIBE1M)
-#include "tviibe1m_partition.h"
-#endif
+#include "tviibe_partition.h"
 
 #define CY_SYS_CM4_PWR_CTL_KEY_OPEN  (0x05FAUL)
 #define CY_SYS_CM4_PWR_CTL_KEY_CLOSE (0xFA05UL)
@@ -425,28 +421,18 @@ __WEAK void Cy_SystemInit(void)
 *******************************************************************************/
 void SystemCoreClockUpdate (void)
 {
-    uint32_t pathFreqHz;
-    uint32_t clkHfPath;
-
     /* Get frequency for the high-frequency clock*/
-    clkHfPath = CY_SYSCLK_CLK_CORE_HF_PATH_NUM;
+    cy_Hfclk0FreqHz = Cy_SysClk_ClkHfGetFrequency(CY_SYSCLK_CLK_CORE_HF_PATH_NUM);
 
-    pathFreqHz = Cy_SysClk_ClkHfGetFrequency(clkHfPath);
-
-    SystemCoreClock = pathFreqHz;
-
-    cy_Hfclk0FreqHz = SystemCoreClock;
+    /* The CM0P core's clock source is the slow clock. */
+    SystemCoreClock = Cy_SysClk_ClkSlowGetFrequency();
 
     /* Get Peripheral clock Frequency*/
-    clkHfPath = CY_SYSCLK_CLK_PERI_HF_PATH_NUM;
-
-    pathFreqHz = Cy_SysClk_ClkHfGetFrequency(clkHfPath);
-
-    cy_PeriClkFreqHz = pathFreqHz;
+    cy_PeriClkFreqHz = Cy_SysClk_ClkHfGetFrequency(CY_SYSCLK_CLK_PERI_HF_PATH_NUM);
 
     /* Sets clock frequency for Delay API */
-    cy_delayFreqMhz = (uint32_t)((cy_delayFreqHz + CY_DELAY_1M_MINUS_1_THRESHOLD) / CY_DELAY_1M_THRESHOLD);
-    cy_delayFreqKhz = (cy_delayFreqHz + CY_DELAY_1K_MINUS_1_THRESHOLD) / CY_DELAY_1K_THRESHOLD;
+    cy_delayFreqMhz = (uint32_t)((SystemCoreClock + CY_DELAY_1M_MINUS_1_THRESHOLD) / CY_DELAY_1M_THRESHOLD);
+    cy_delayFreqKhz = (SystemCoreClock + CY_DELAY_1K_MINUS_1_THRESHOLD) / CY_DELAY_1K_THRESHOLD;
 
     /* Get the frequency of AHB source, CLK HF0 is the source for AHB*/
     cy_AhbFreqHz = Cy_SysClk_ClkHfGetFrequency(0UL);
@@ -810,7 +796,7 @@ void SystemInit(void)
 #endif /* !defined(CY_IPC_DEFAULT_CFG_DISABLE) */
 
     #if defined(CY_DEVICE_SECURE)
-        /* Initialize Protected Regsiter Access driver. */
+        /* Initialize Protected Register Access driver. */
         Cy_PRA_Init();
     #endif /* defined(CY_DEVICE_SECURE) */
 }

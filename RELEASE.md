@@ -19,8 +19,13 @@ The KIT_T2G-B-E_LITE library includes the following:
 * API documentation
 
 ### What Changed?
+#### v4.3.1
+Updated the README file for CY8CEVAL-062S2-MUR-43439M2.
 #### v4.3.0
-* Update companion device pin configuration to align with requirements of MUR-43439 M2 module.
+* Update companion device pin configuration to align with requirements of MUR-43439 and LAI-43439 M.2 module.
+* Updated the README file for CY8CEVAL-062S2, CY8CEVAL-062S2-LAI-43439M2, CY8CEVAL-062S2-LAI-4373M2, CY8CEVAL-062S2-MUR-4373M2, CY8CEVAL-062S2-MUR-4373EM2, and CY8CEVAL-062S2-CYW43022CUB BSPs to remove the M.2 radio module detail from kit contents section.
+#### v4.2.1
+* Added memory-analyzer configuration support for CY8CKIT-062S4.
 #### v4.2.0
 * Updated linker scripts and startup code to align with mtb-pdl-cat1 v3.4.0
 * Added functionality to enable BSP Assistant chip flow
@@ -92,9 +97,9 @@ This version of the KIT_T2G-B-E_LITE BSP was validated for compatibility with th
 
 | Software and Tools                        | Version |
 | :---                                      | :----:  |
-| ModusToolbox™ Software Environment        | 3.0.0   |
-| GCC Compiler                              | 11.3.1  |
-| IAR Compiler                              | 9.30.1  |
+| ModusToolbox™ Software Environment        | 3.1.0   |
+| GCC Compiler                              | 12.2.1  |
+| IAR Compiler                              | 9.40.2  |
 | ARM Compiler                              | 6.16    |
 
 Minimum required ModusToolbox™ Software Environment: v3.0.0
