@@ -31,7 +31,7 @@ To use code from the BSP, simply include a reference to `cybsp.h`.
 
 * TRAVEO™ T2G Body Entry evaluation board
 * See 
-[Quick start guide](https://www.infineon.com/dgdl/?fileId=8ac78c8c8929aa4d018990ed27ea5f31)
+[Quick start guide](https://www.infineon.com/assets/row/public/documents/10/44/infineon-traveo-tm-t2g-body-entry-lite-kit-kit-t2g-b-e-lite-quick-start-guide-usermanual-en.pdf)
 
 ### Low-level Driver References:
 
@@ -42,14 +42,14 @@ To use code from the BSP, simply include a reference to `cybsp.h`.
 
 ## BSP Configuration
 
-The BSP has a few hooks that allow its behavior to be configured. Some of these items are enabled by default while others must be explicitly enabled. Items enabled by default are specified in the KIT_T2G-B-E_LITE.mk file. The items that are enabled can be changed by creating a custom BSP or by editing the application makefile.
+The BSP has a few hooks that allow its behavior to be configured. Some of these items are enabled by default while others must be explicitly enabled. Items enabled by default are specified in the bsp.mk file. The items that are enabled can be changed by creating a custom BSP or by editing the application makefile.
 
 Components:
 * Device specific category reference (e.g.: CAT1) - This component, enabled by default, pulls in any device specific code for this board.
 
 Defines:
 * CYBSP_WIFI_CAPABLE - This define, disabled by default, causes the BSP to initialize the interface to an onboard wireless chip if it has one.
-* CY_USING_HAL - This define, enabled by default, specifies that the HAL is intended to be used by the application. This will cause the BSP to include the applicable header file and to initialize the system level drivers.
+* CY_USING_HAL - This define, enabled by default in some BSPs, specifies that the HAL is intended to be used by the application. This will cause the BSP to include the applicable header file and to initialize the system level drivers.  Newer BSPs pull in the v3.x HAL, which enables itself via its own makefile, so CY_USING_HAL is not present.
 * CYBSP_CUSTOM_SYSCLK_PM_CALLBACK - This define, disabled by default, causes the BSP to skip registering its default SysClk Power Management callback, if any, and instead to invoke the application-defined function `cybsp_register_custom_sysclk_pm_callback` to register an application-specific callback.
 
 ### Clock Configuration
@@ -77,7 +77,7 @@ See the [BSP API Reference Manual][api] for the complete list of the provided in
 
 ## More information
 * [KIT_T2G-B-E_LITE BSP API Reference Manual][api]
-* [KIT_T2G-B-E_LITE Documentation](https://www.infineon.com/KIT_T2G-B-E_LITE)
+* [KIT_T2G-B-E_LITE Documentation](https://www.infineon.com/evaluation-board/KIT-T2G-B-E-LITE)
 * [Cypress Semiconductor, an Infineon Technologies Company](http://www.cypress.com)
 * [Infineon GitHub](https://github.com/infineon)
 * [ModusToolbox™](https://www.cypress.com/products/modustoolbox-software-environment)
@@ -86,4 +86,4 @@ See the [BSP API Reference Manual][api] for the complete list of the provided in
 [settings]: https://infineon.github.io/TARGET_KIT_T2G-B-E_LITE/html/md_bsp_settings.html
 
 ---
-© Cypress Semiconductor Corporation (an Infineon company) or an affiliate of Cypress Semiconductor Corporation, 2019-2024.
+© Cypress Semiconductor Corporation (an Infineon company) or an affiliate of Cypress Semiconductor Corporation, 2019-2025.

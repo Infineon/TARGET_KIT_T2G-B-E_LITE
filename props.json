@@ -1,13 +1,13 @@
 {
     "core": {
-        "version": "4.3.1.43936"
+        "version": "5.0.2.47689"
     },
     "opt": {
         "props": {
             "capabilities": [
                 "adc",
                 "arduino",
-                "bsp_gen4",
+                "bsp_gen5",
                 "can",
                 "cat1",
                 "cat1a",
@@ -46,7 +46,7 @@
             "min_tools": "3.1.0",
             "template": {
                 "id": "mtb-template-cat1",
-                "version": "release-v1.6.0"
+                "version": "release-v1.7.0"
             }
         }
     }
