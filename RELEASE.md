@@ -1,5 +1,6 @@
 # KIT_T2G-B-E_LITE BSP Release Notes
-The KIT_T2G-B-E_LITE, a 100-pin evaluation board is based on the TRAVEO™ T2G Body Entry family of devices. TRAVEO™ T2G Body Entry MCU is designed for  automotive and industrial applications. The evaluation board carries a TRAVEO™ T2G Body Entry microcontroller,and headers compatible with Arduino for interfacing Arduino shields. In addition, the board features an on-board programmer/debugger (KitProg3),  CAN FD transceiver, a Shield2Go connector interface and MikroBUS connector interface, three user LEDs, one potentiometer,  and two user push buttons. The board supports operating voltages from 3.3 V to 5.0 V for TRAVEO™ T2G Body Entry device.     
+
+The KIT_T2G-B-E_LITE, a 100-pin evaluation board is based on the TRAVEO™ T2G Body Entry family of devices. TRAVEO™ T2G Body Entry MCU is designed for  automotive and industrial applications. The evaluation board carries a TRAVEO™ T2G Body Entry microcontroller, and headers compatible with Arduino for interfacing Arduino shields. In addition, the board features an on-board programmer/debugger (KitProg3),  CAN FD transceiver, a Shield2Go connector interface and MikroBUS connector interface, three user LEDs, one potentiometer,  and two user push buttons. The board supports operating voltages from 3.3 V to 5.0 V for TRAVEO™ T2G Body Entry device.     
 **Note:**
 Some additional setups will allow you to use more code examples than those shown on the next page. Click 
 [here ](https://github.com/Infineon/TRAVEO_T2G_code_examples#how-to-setup)
@@ -19,13 +20,23 @@ The KIT_T2G-B-E_LITE library includes the following:
 * API documentation
 
 ### What Changed?
+#### v6.0.0
+* Enabled HAL interface version 3 support for KIT_T2G-B-E_LITE (mtb-hal-t2gbe4m). The mtb-hal-cat1 (HAL v2) dependency and the CY_USING_HAL define were removed from the BSP.
+* Updated the clock configuration: CLK_HF0 now runs at 160 MHz from the PLL sourced by the ECO (previously 100 MHz from the FLL), CLK_HF1 runs at 80 MHz (previously 8 MHz), and CLK_HF2 is sourced from the ILO.
+* Regenerated the design files and generated code with the ModusToolbox&trade; 3.8.0 configurators. The minimum required ModusToolbox&trade; version is now 3.8.0.
+* Updated linker scripts and startup code to align with mtb-template-cat1 v1.13.0:
+  * IAR CM0+ linker script: .cy_sharedmem is now placed in application SRAM instead of the SROM-reserved SRAM, which prevents a HardFault during runtime initialization when the Flash/SROM driver is linked.
+  * CM0+ startup (system_psoc6_cm0plus.c): Fixed the SROM system call handlers (IRQ0/IRQ1) not being installed when the code is built with GCC 14, so Flash/SROM API calls from the CM0+ and CM4 cores are serviced again.
+* Updated the kit documentation to match the KIT_T2G-B-E_LITE hardware: corrected the debug connector description (20-pin Cortex&reg; Debug + ETM), added the Arduino-compatible headers, expansion headers, power inputs, current measurement jumper, and crystals to the kit features, and removed DAC, OPAMP/COMP, and LPCOMP settings that do not apply to CYT2BL devices.
+#### v5.1.0
+* Updated the README file for KIT_XMC52_EVK
 #### v5.0.2
 * Fix documentation URLs for some Traveo Kits
 #### v5.0.1
 * Updated the capabilities in props.json for PSOC™ 6 MCU BSPs with AIROC™ Wi-Fi Bluetooth® Combo devices
 * Updated linker scripts to align with mtb-pdl-cat1 v3.16.0 for CY8CPROTO-062S3-4343W BSP
 #### v5.0.0
-* New dependency (Bluetooth® fimrware) added for PSOC™ 6 MCU BSPs with AIROC™ Wi-Fi Bluetooth® Combo devices
+* New dependency (Bluetooth® firmware) added for PSOC™ 6 MCU BSPs with AIROC™ Wi-Fi Bluetooth® Combo devices
 #### v4.3.1
 * Updated the README file for CY8CEVAL-062S2-MUR-43439M2.
 #### v4.3.0
@@ -104,21 +115,21 @@ This version of the KIT_T2G-B-E_LITE BSP was validated for compatibility with th
 
 | Software and Tools                        | Version |
 | :---                                      | :----:  |
-| ModusToolbox™ Software Environment        | 3.2.0   |
-| GCC Compiler                              | 11.3.1  |
+| ModusToolbox™ Software Environment        | 3.8.0   |
+| GCC Compiler                              | 14.2.1  |
 | IAR Compiler                              | 9.50.2  |
 | ARM Compiler                              | 6.22    |
 
-Minimum required ModusToolbox™ Software Environment: v3.0.0
+Minimum required ModusToolbox™ Software Environment: v3.8.0
 
 ### More information
 * [KIT_T2G-B-E_LITE BSP API Reference Manual][api]
 * [KIT_T2G-B-E_LITE Documentation](https://www.infineon.com/evaluation-board/KIT-T2G-B-E-LITE)
-* [Cypress Semiconductor, an Infineon Technologies Company](http://www.cypress.com)
+* [Infineon Technologies AG](http://www.infineon.com)
 * [Infineon GitHub](https://github.com/infineon)
-* [ModusToolbox™](https://www.cypress.com/products/modustoolbox-software-environment)
+* [ModusToolbox™](https://www.infineon.com/design-resources/development-tools/sdk/modustoolbox-software)
 
 [api]: https://infineon.github.io/TARGET_KIT_T2G-B-E_LITE/html/modules.html
 
 ---
-© Cypress Semiconductor Corporation (an Infineon company) or an affiliate of Cypress Semiconductor Corporation, 2019-2025.
+© Infineon Technologies AG or an affiliate of Infineon Technologies AG, 2019-2026.

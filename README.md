@@ -2,7 +2,8 @@
 
 ## Overview
 
-The KIT_T2G-B-E_LITE, a 100-pin evaluation board is based on the TRAVEO™ T2G Body Entry family of devices. TRAVEO™ T2G Body Entry MCU is designed for  automotive and industrial applications. The evaluation board carries a TRAVEO™ T2G Body Entry microcontroller,and headers compatible with Arduino for interfacing Arduino shields. In addition, the board features an on-board programmer/debugger (KitProg3),  CAN FD transceiver, a Shield2Go connector interface and MikroBUS connector interface, three user LEDs, one potentiometer,  and two user push buttons. The board supports operating voltages from 3.3 V to 5.0 V for TRAVEO™ T2G Body Entry device.     
+
+The KIT_T2G-B-E_LITE, a 100-pin evaluation board is based on the TRAVEO™ T2G Body Entry family of devices. TRAVEO™ T2G Body Entry MCU is designed for  automotive and industrial applications. The evaluation board carries a TRAVEO™ T2G Body Entry microcontroller, and headers compatible with Arduino for interfacing Arduino shields. In addition, the board features an on-board programmer/debugger (KitProg3),  CAN FD transceiver, a Shield2Go connector interface and MikroBUS connector interface, three user LEDs, one potentiometer,  and two user push buttons. The board supports operating voltages from 3.3 V to 5.0 V for TRAVEO™ T2G Body Entry device.     
 **Note:**
 Some additional setups will allow you to use more code examples than those shown on the next page. Click 
 [here ](https://github.com/Infineon/TRAVEO_T2G_code_examples#how-to-setup)
@@ -17,12 +18,16 @@ To use code from the BSP, simply include a reference to `cybsp.h`.
 ### Kit Features:
 
 * CYT2BL5CAS 4MB Flash 100-pin LQFP device
-* Programming interface (Arm® Standard JTAG, Cortex® Debug + ETM with Arm® ETM Mictor)
+* Programming and debug interface (20-pin Arm® Cortex® Debug + ETM connector with JTAG/SWD and 4-bit trace)
 * Reset control with manual reset switch and voltage supervision
 * CAN FD interface
 * KitProg3 on-board SWD programmer/debugger, USB-UART and USB-I2C bridge functionality
-* A Shield2Go connector interface and a MikroBUS connector interface
+* Arduino-compatible headers, a Shield2Go connector interface and a MikroBUS connector interface
+* Two 40-pin expansion headers
+* Power supply from the KitProg3 USB Micro-B connector or from an external 7 V to 12 V DC power jack
 * Selectable input supply voltages of 3.3 V and 5.0 V for the TRAVEO™ T2G Body Entry device
+* Current measurement jumper for the TRAVEO™ T2G Body Entry device
+* 16 MHz external crystal oscillator (ECO) and 32.768 kHz watch crystal oscillator (WCO)
 * Three user LEDs, two user buttons, and a reset button for the TRAVEO™ T2G Body Entry device
 * A potentiometer which can be used to simulate analog sensor output
 * A mode button and a mode LED for KitProg3
@@ -36,7 +41,7 @@ To use code from the BSP, simply include a reference to `cybsp.h`.
 ### Low-level Driver References:
 
 * See 
-[Hardware abstraction layer (HAL) library](https://infineon.github.io/mtb-hal-cat1/html/modules.html)
+[Hardware abstraction layer (HAL) library](https://infineon.github.io/mtb-hal-t2gbe4m/html/modules.html)
 * See 
 [Peripheral driver library (PDL) library](https://infineon.github.io/mtb-pdl-cat1/pdl_api_reference_manual/html/index.html)
 
@@ -57,9 +62,10 @@ Defines:
 | Clock    | Source    | Output Frequency |
 |----------|-----------|------------------|
 | FLL      | IMO       | 100.0 MHz        |
-| CLK_HF0  | CLK_PATH0 | 100 MHz          |
-| CLK_HF1  | CLK_PATH1 | 8 MHz            |
-| CLK_HF2  | CLK_PATH2 | 8 MHz            |
+| PLL      | ECO       | 160.0 MHz        |
+| CLK_HF0  | CLK_PATH1 | 160 MHz          |
+| CLK_HF1  | CLK_PATH1 | 80 MHz           |
+| CLK_HF2  | CLK_PATH3 | 0 MHz            |
 
 ### Power Configuration
 
@@ -67,7 +73,7 @@ Defines:
 * VDDA Voltage: 3300 mV
 * VDDD Voltage: 3300 mV
 
-See the [BSP Setttings][settings] for additional board specific configuration settings.
+See the [BSP Settings][settings] for additional board specific configuration settings.
 
 ## API Reference Manual
 
@@ -78,12 +84,12 @@ See the [BSP API Reference Manual][api] for the complete list of the provided in
 ## More information
 * [KIT_T2G-B-E_LITE BSP API Reference Manual][api]
 * [KIT_T2G-B-E_LITE Documentation](https://www.infineon.com/evaluation-board/KIT-T2G-B-E-LITE)
-* [Cypress Semiconductor, an Infineon Technologies Company](http://www.cypress.com)
+* [Infineon Technologies AG](http://www.infineon.com)
 * [Infineon GitHub](https://github.com/infineon)
-* [ModusToolbox™](https://www.cypress.com/products/modustoolbox-software-environment)
+* [ModusToolbox&trade;](https://www.infineon.com/design-resources/development-tools/sdk/modustoolbox-software)
 
 [api]: https://infineon.github.io/TARGET_KIT_T2G-B-E_LITE/html/modules.html
 [settings]: https://infineon.github.io/TARGET_KIT_T2G-B-E_LITE/html/md_bsp_settings.html
 
 ---
-© Cypress Semiconductor Corporation (an Infineon company) or an affiliate of Cypress Semiconductor Corporation, 2019-2025.
+© Infineon Technologies AG or an affiliate of Infineon Technologies AG, 2019-2026.

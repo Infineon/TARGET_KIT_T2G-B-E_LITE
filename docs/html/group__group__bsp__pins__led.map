@@ -1,0 +1,4 @@
+<map id="LED Pins" name="LED Pins">
+<area shape="rect" id="node1" href="$group__group__bsp__pins.html" title="Macro definitions for common peripheral pins on the board." alt="" coords="5,5,115,31"/>
+<area shape="rect" id="node2" title="Pins connected to user LEDs on the board." alt="" coords="163,5,241,31"/>
+</map>

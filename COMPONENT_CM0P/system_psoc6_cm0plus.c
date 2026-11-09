@@ -1,12 +1,13 @@
 /***************************************************************************//**
 * \file system_psoc6_cm0plus.c
-* \version 2.110
+* \version 2.120
 *
 * The device system-source file.
 *
 ********************************************************************************
 * \copyright
-* Copyright 2016-2025 Cypress Semiconductor Corporation
+* (c) 2016-2026, Infineon Technologies AG or an affiliate of
+* Infineon Technologies AG.
 * SPDX-License-Identifier: Apache-2.0
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -30,7 +31,8 @@
 #include "cy_sysclk.h"
 #include "cy_wdt.h"
 
-#if (defined(CY_DEVICE_TVIIBE))
+#if defined(CY_DEVICE_TVIIBE)
+
 #include "cmsis_compiler.h"
 
 #include "tviibe_partition.h"
@@ -333,7 +335,7 @@ void CyMain(void)
 
 
 /******************************************************************************/
-// TVIIBE SystemInit
+
 void SystemInit(void)
 {
     /* Startup Init */
@@ -385,7 +387,7 @@ static void PrepareSystemCallInfrastructure(void)
     const uint8_t u8Irq1Index = (uint8_t) (VECTOR_TABLE_OFFSET_IRQ1 / 4);
     volatile uint32_t * const ramTable   = (uint32_t *) __ramVectors;
     /* The array syntax is necessary to avoid out-of-bounds warnings in some compilers. */
-    volatile uint32_t (* const sromTable)[VECTORTABLE_SIZE]  = (uint32_t (*)[VECTORTABLE_SIZE])SROM_VECTOR_TABLE_BASE_ADDRESS;
+    volatile uint32_t (* const volatile sromTable)[VECTORTABLE_SIZE]  = (uint32_t (*)[VECTORTABLE_SIZE])SROM_VECTOR_TABLE_BASE_ADDRESS;
 
     // Use IRQ0 and IRQ1 handlers from SROM vector table
     ramTable[u8Irq0Index] = (*sromTable)[u8Irq0Index];
@@ -614,7 +616,7 @@ void Cy_SysResetCM4(void)
 }
 
 
-#else /* End of TVIIBE section, start of PSoC 6 section */
+#elif !defined(CY_DEVICE_XMC5000) /* Start of PSOC section */
 
 #if !defined(CY_IPC_DEFAULT_CFG_DISABLE)
     #include "cy_ipc_sema.h"
@@ -1099,6 +1101,6 @@ __cy_memory_4_row_size  EQU __cpp(1)
 }
 #endif /* defined (__ARMCC_VERSION) && (__ARMCC_VERSION < 6010050) */
 
-#endif /* (defined(CY_DEVICE_TVIIBE)) */
+#endif /* defined(CY_DEVICE_TVIIBE) */
 
 /* [] END OF FILE */

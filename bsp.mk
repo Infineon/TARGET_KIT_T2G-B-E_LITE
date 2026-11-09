@@ -6,8 +6,8 @@
 #
 ################################################################################
 # \copyright
-# Copyright 2021-2022 Cypress Semiconductor Corporation (an Infineon company) or
-# an affiliate of Cypress Semiconductor Corporation
+# Copyright (c) 2021-2026 Infineon Technologies AG
+# an affiliate of Infineon Technologies AG
 #
 # SPDX-License-Identifier: Apache-2.0
 #
@@ -34,7 +34,7 @@ endif
 BSP_COMPONENTS:=CM0P_SLEEP
 
 # Any additional defines to apply when using this board.
-BSP_DEFINES:=CY_USING_HAL
+BSP_DEFINES:=
 
 # Path to the flash loaders to patch for this board
 #CY_QSPI_FLM_DIR=$(MTB_TOOLS__TARGET_DIR)/config/FlashLoaders/

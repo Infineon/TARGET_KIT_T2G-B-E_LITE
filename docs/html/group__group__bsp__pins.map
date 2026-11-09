@@ -1,0 +1,8 @@
+<map id="Pin Mappings" name="Pin Mappings">
+<area shape="rect" id="node1" href="$group__group__bsp__pins__btn.html" title="Pins connected to user buttons on the board." alt="" coords="193,5,289,31"/>
+<area shape="rect" id="node2" href="$group__group__bsp__pins__arduino.html" title="Pins mapped to the Arduino header on the board." alt="" coords="163,55,318,80"/>
+<area shape="rect" id="node3" href="$group__group__bsp__pins__wco.html" title="Pins connected to the WCO on the board." alt="" coords="213,104,268,129"/>
+<area shape="rect" id="node4" title="Macro definitions for common peripheral pins on the board." alt="" coords="5,104,115,129"/>
+<area shape="rect" id="node5" href="$group__group__bsp__pins__led.html" title="Pins connected to user LEDs on the board." alt="" coords="201,153,280,179"/>
+<area shape="rect" id="node6" href="$group__group__bsp__pins__comm.html" title="Pins associated with connections on the board for communication interfaces (UART/I2C/SPI/...." alt="" coords="163,203,319,228"/>
+</map>

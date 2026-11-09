@@ -1,0 +1,4 @@
+<map id="Communication Pins" name="Communication Pins">
+<area shape="rect" id="node1" href="$group__group__bsp__pins.html" title="Macro definitions for common peripheral pins on the board." alt="" coords="5,5,115,31"/>
+<area shape="rect" id="node2" title="Pins associated with connections on the board for communication interfaces (UART/I2C/SPI/...." alt="" coords="163,5,319,31"/>
+</map>
